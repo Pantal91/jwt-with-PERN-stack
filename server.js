@@ -20,15 +20,6 @@ app.use('/auth', require('./routes/jwtAuth'))
 
 app.use('/dashboard', require('./routes/dashboard'))
 
-app.get('/', async (req, res) => {
-    try {
-        const response = await db.query('select * from users')
-        res.json(response.rows)
-    } catch(err) {
-        console.log(err)
-    }
-})
-
 app.listen(process.env.PORT, () => {
     console.log(`Server is listening on port ${port}...`)
 })
