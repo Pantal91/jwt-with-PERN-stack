@@ -60,7 +60,7 @@ router.post('/login', validateInfo, async (req, res) => {
         const user = await db.query('SELECT * FROM users where user_email = $1', [email])
 
         if(user.rows.length === 0) {
-            return res.status(401).send('Incorrect email address or password.')
+            return res.status(401).json('Incorrect email address or password.')
         }
 
         // 3. Check if the incoming password is the same as the db password for the user
@@ -68,7 +68,7 @@ router.post('/login', validateInfo, async (req, res) => {
         const validPassword = await bcrypt.compare(password, user.rows[0].user_password)
 
         if(!validPassword) {
-            return res.status(401).send('Incorrect email address or password.')
+            return res.status(401).json('Incorrect email address or password.')
         }
 
         // 4. Give them the jwt token
@@ -79,7 +79,7 @@ router.post('/login', validateInfo, async (req, res) => {
 
     } catch (err) {
         console.log(err.message)
-        res.status(500).send('Server Error')
+        res.status(500).json('Server Error')
     }
 })
 

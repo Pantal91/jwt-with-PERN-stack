@@ -10,8 +10,6 @@ const port = process.env.PORT || 3001
 app.use(express.json()) // req.body
 app.use(cors())
 
-// Routes
-
 // Register and login routes
 
 app.use('/auth', require('./routes/jwtAuth'))
