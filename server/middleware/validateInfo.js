@@ -8,21 +8,21 @@ const validateInfo = (req, res, next) => {
 
     if(req.path === '/login') {
         if(email === '' || password === '') {
-            return res.status(401).send('Missing credentials.')
+            return res.status(401).send('Missing credentials!')
         }
     
         if(!validateEmail(email)) {
-            return res.status(401).send('Invalid email format')
+            return res.status(401).send('Invalid email format!')
         }
     }
 
     if(req.path === '/register') {
         if(name === '' || password === '') {
-            return res.status(401).send('Missing credentials.')
+            return res.status(401).send('Missing credentials!')
         }
     
         if(!validateEmail(email)) {
-            return res.status(401).send('Invalid email format')
+            return res.status(401).send('Invalid email format!')
         }
     }
 

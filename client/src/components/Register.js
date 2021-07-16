@@ -2,6 +2,7 @@ import React, { Fragment, useState } from 'react'
 import axios from '../apis/axios'
 import { Link } from 'react-router-dom'
 import { toast } from 'react-toastify'
+import validator from 'validator'
 
 const Register = ({ setAuth }) => {
     
@@ -11,6 +12,18 @@ const Register = ({ setAuth }) => {
 
     const onSubmitForm = async (e) => {
         e.preventDefault();
+
+        if(name === '' || email === '' || password === '') {
+            return toast.error('Missing credentials!', {
+                position: 'top-center'
+            })
+        }
+
+        if(!validator.isEmail(email)) {
+            return toast.error('Invalid email format!', {
+                position: 'top-center'
+            })
+        }
         
         try {
             
